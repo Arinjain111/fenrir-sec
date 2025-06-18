@@ -37,12 +37,21 @@ npm run watch
 
 ### 2. Embeded Wingman AI Extension
 
-Clone Wingman AI into the builtin extensions folder:
+submodule Wingman AI into the builtin extensions folder:
 
 ```bash
 cd extensions/wingman-ai
 git remote set-url origin https://github.com/RussellCanfield/wingman-ai.git
 git submodule update --remote --init --recursive
+```
+
+cloning repo
+
+```bash
+cd extensions/wingman-ai
+git clone https://github.com/RussellCanfield/wingman-ai.git
+npm i
+npm run compile
 ```
 
 ### 4. Build Executable (Windows Example)
