@@ -297,6 +297,32 @@ const watchWebExtensionsTask = task.define('watch-web', () => buildWebExtensions
 gulp.task(watchWebExtensionsTask);
 exports.watchWebExtensionsTask = watchWebExtensionsTask;
 
+gulp.task('compile-extensions', () => {
+  const all = [];
+
+  // Add built-in extensions to the compilation list
+  const dirs = [
+    'extensions',
+    'extensions/builtin'
+  ].filter(d => fs.existsSync(d));
+
+  const extensionPaths = [];
+  dirs.forEach(dir => {
+    fs.readdirSync(dir)
+      .filter(name => fs.statSync(path.join(dir, name)).isDirectory())
+      .forEach(name => extensionPaths.push(path.join(dir, name)));
+  });
+
+  // Make sure wingman-ai is included
+  const wingmanPath = path.join('extensions', 'wingman-ai');
+  if (fs.existsSync(wingmanPath) && !extensionPaths.includes(wingmanPath)) {
+    extensionPaths.push(wingmanPath);
+  }
+
+  // Process each extension
+  // ...existing code...
+});
+
 /**
  * @param {boolean} isWatch
  */
